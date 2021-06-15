@@ -1,17 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
-
+import { StyleSheet, Text, View, Button ,SafeAreaView} from "react-native";
+import Profile from './components/profile.js'
+import tailwind from 'tailwind-rn';
+import Demo from './components/Demo.js'
 const App = () => {
   return (
-    <View style={styles.container}>
-      
-    </View>
+<Demo/>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
+   
   },
 });
 
