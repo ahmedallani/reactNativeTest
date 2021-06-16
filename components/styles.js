@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions,StatusBar } from 'react-native';
 const window = Dimensions.get('window');
 
 export const IMAGE_HEIGHT = window.width / 2;
@@ -12,10 +12,13 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   textInput: {
+    width: window.width - 30,
     height: 40,
-    borderColor: "#000000",
+    marginLeft:80,
+    borderColor: "#34494E",
+    // borderColor: "#000000",
     borderBottomWidth: 1,
-    marginBottom: 36,
+    marginBottom: -300,
   },  
   btnContainer: {
     backgroundColor: "white",
@@ -44,6 +47,14 @@ export default StyleSheet.create({
     padding: 24,
     flex: 1,
     justifyContent: "space-around",
+  },
+  cont: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+  },
+  scrollView: {
+    backgroundColor: 'white',
+    // marginHorizontal: 20,
   },
   register:{
     marginBottom:20, 
