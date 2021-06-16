@@ -5,7 +5,7 @@ import Splash from './components/Splash'
 
 const App = () => {
   return (
-    <View style={styles.container}>
+    <View>
       <Splash />
     </View>
   );
