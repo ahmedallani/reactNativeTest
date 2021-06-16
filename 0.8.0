@@ -1,0 +1,20 @@
+
+> core-js@2.6.12 postinstall F:\Your-Way-RN\node_modules\react-native-web\node_modules\core-js
+> node -e "try{require('./postinstall')}catch(e){}"
+
+[96mThank you for using core-js ([94m https://github.com/zloirock/core-js [96m) for polyfilling JavaScript standard library![0m
+
+[96mThe project needs your help! Please consider supporting of core-js on Open Collective or Patreon: [0m
+[96m>[94m https://opencollective.com/core-js [0m
+[96m>[94m https://www.patreon.com/zloirock [0m
+
+[96mAlso, the author of core-js ([94m https://github.com/zloirock [96m) is looking for a good job -)[0m
+
+
+> galio-framework@0.8.0 postinstall F:\Your-Way-RN\node_modules\galio-framework
+> opencollective-postinstall
+
+[96m[1mThank you for using galio-framework![96m[1m
+[0m[96mIf you rely on this package, please consider supporting our open collective:[22m[39m
+> [94mhttps://opencollective.com/galio/donate[0m
+
