@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     color: "white",
     left: 19,
-    top: 27,
+    top: 45,
   },
   title1: {
     position: "absolute",
