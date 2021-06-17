@@ -12,7 +12,7 @@ import { useFonts } from "expo-font";
 import { Input, Button, Switch } from "galio-framework";
 import IconAntDesign from "react-native-vector-icons/AntDesign";
 
-const SignUp = () => {
+const SignUp = ({changeView}) => {
   const [toggleSwitch, setToggleSwitch] = useState(false);
   const [loaded] = useFonts({
     Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
@@ -32,7 +32,9 @@ const SignUp = () => {
             style={styles.img}
             source={require("../assets/Vector-Sign.png")}
           />
-          <IconAntDesign name="left" size={25} style={styles.icon} />
+          <IconAntDesign name="left" size={25} style={styles.icon}   onPress={() => {
+          changeView('');
+        }}/>
           <Text style={styles.title1}>Create</Text>
           <Text style={styles.title2}>Account</Text>
           <Input style={styles.input1} placeholder="Enter your Username" />
@@ -61,6 +63,9 @@ const SignUp = () => {
             round
             uppercase
             color="#AAAA3A"
+            onPress={() => {
+              changeView('signin');
+            }}
           >
             Sign-In
           </Button>
