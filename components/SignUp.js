@@ -27,7 +27,7 @@ const SignUp = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View>
+        <View style={styles.view}>
           <Image
             style={styles.img}
             source={require("../assets/Vector-Sign.png")}
@@ -71,6 +71,9 @@ const SignUp = () => {
 };
 
 const styles = StyleSheet.create({
+  view: {
+    
+  },
   img: {
     position: "absolute",
     width: 375,
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     color: "white",
     left: 19,
-    top: 27,
+    top: 45,
   },
   male: {
     position: "absolute",
