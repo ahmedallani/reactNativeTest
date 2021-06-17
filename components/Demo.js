@@ -13,6 +13,8 @@ import {
 import styles, { IMAGE_HEIGHT, IMAGE_HEIGHT_SMALL } from "./styles";
 import avataaars from "../assets/avataaars.png";
 import { Input, Block, Button } from "galio-framework";
+import axios from 'react-native-axios'
+
 
 class Demo extends Component {
   constructor(props) {
