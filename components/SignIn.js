@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState}from "react";
 import {
   StyleSheet,
   View,
@@ -10,8 +10,13 @@ import {
 import { useFonts } from "expo-font";
 import { Input, Button } from "galio-framework";
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import axios from 'react-native-axios'
+
 
 const SignIn = ({changeView}) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const [loaded] = useFonts({
     Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
   });
