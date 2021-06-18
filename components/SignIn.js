@@ -11,7 +11,7 @@ import { useFonts } from "expo-font";
 import { Input, Button } from "galio-framework";
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 
-const SignIn = () => {
+const SignIn = ({changeView}) => {
   const [loaded] = useFonts({
     Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
   });
@@ -34,7 +34,7 @@ const SignIn = () => {
         viewPass
       />
       <Text style={styles.forgetpass}>Forget Password ?</Text>
-      <Button style={styles.btn1} round uppercase color="#C2C272">
+      <Button style={styles.btn1} round uppercase color="#C2C272" onPress={() =>changeView('signup')}>
         Sign-In
       </Button>
       <Button
