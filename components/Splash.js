@@ -106,10 +106,14 @@ if (!loaded) {
       <Text style={styles.txt}>Your Way </Text>
       <Text style={styles.subtxt}>Find New </Text>
       <Text style={styles.subtxt1}>Possibilities</Text>
-      <Button style={styles.btn1} round uppercase color="#AAAA3A" onPress={() =>changeView('signin')}>
+      <Button style={styles.btn1} round uppercase color="#AAAA3A"  onPress={() => {
+    changeView('signin');
+  }}>
         Sign-In
       </Button>
-      <Button style={styles.btn2} round uppercase color="#AAAA3A"onPress={() =>changeView('signup')}>
+      <Button style={styles.btn2} round uppercase color="#AAAA3A"    onPress={() => {
+          changeView('signup');
+        }}>
         Sign-Up
       </Button>
   

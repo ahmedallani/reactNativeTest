@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import {
   StyleSheet,
   View,
@@ -11,56 +11,113 @@ import {
 import { useFonts } from "expo-font";
 import { Input, Button, Switch } from "galio-framework";
 import IconAntDesign from "react-native-vector-icons/AntDesign";
+import axios from 'react-native-axios'
 
 const SignUp = ({changeView}) => {
+<<<<<<< HEAD
   const [toggleSwitch, setToggleSwitch] = useState(false);
+=======
+  // const [toggleSwitch, setToggleSwitch] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("male");
+  const [data, setData] = useState("");
+
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+
+  const [password, setPassword] = useState("");
+>>>>>>> 5afe7afb6be1c31c1e7ba36ce91664f697da4343
   const [loaded] = useFonts({
     Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
   });
-
-  if (!loaded) {
+  var url ='192.168.2.192'
+ if (!loaded) {
     return null;
   }
+  
+  // useEffect(() => {
+  //   checkUser()
+  // }, []);
+ const checkUser =()=>{
+ if(isEnabled === false){
+      setGender('male')
+    }
+if(isEnabled === true){
+      setGender('female')
+    }
+  }
+  
+
+  const addUser = () => {
+    axios.post(`http://${url}:3001/user/signup`,{username,email,password,gender}).then(({data})=>{
+        console.log(data)
+        changeView('signin')
+  
+    }).catch((err)=>{
+        console.log('err', err)
+        setError(err.message)
+    })
+   };
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View>
+        <View style={styles.view}>
           <Image
             style={styles.img}
             source={require("../assets/Vector-Sign.png")}
           />
-          <IconAntDesign name="left" size={25} style={styles.icon} />
+          <IconAntDesign name="left" size={25} style={styles.icon} onPress={() => {
+          changeView('');
+        }}/>
           <Text style={styles.title1}>Create</Text>
           <Text style={styles.title2}>Account</Text>
-          <Input style={styles.input1} placeholder="Enter your Username" />
+          <Input style={styles.input1} placeholder="Enter your Username"
+            onChangeText={setUsername}
+            />
           <Input
             style={styles.input2}
             type="email-address"
             placeholder="Enter your E-mail"
+            onChangeText={setEmail}
+
           />
           <Input
             style={styles.input}
             placeholder="Enter your Password"
             password
             viewPass
+            onChangeText={setPassword}
           />
           <Switch
             style={styles.switch}
-            onChange={() => setToggleSwitch(true)}
+            onChange={()=>{toggleSwitch()
+              console.log(gender)
+              checkUser()}}
+            value={isEnabled}
+
+            // onChange={() => {
+            //   checkUser(gender)
+            //   console.log(gender)
+            // }}
           />
           <Text style={styles.male}>Male</Text>
           <Text style={styles.female}>Female</Text>
-          <Button style={styles.btn1} round uppercase color="#AAAA3A">
+          <Button style={styles.btn1} round uppercase color="#AAAA3A" onPress={() =>addUser()}>
             Sign-Up
           </Button>
           <Button
             style={styles.btn2}
             round
             uppercase
-            color="#AAAA3A" onPress={() =>changeView('signup')}
+            color="#AAAA3A"
+            onPress={() => {
+              changeView('signin');
+            }}
           >
             Sign-In
           </Button>
@@ -71,6 +128,9 @@ const SignUp = ({changeView}) => {
 };
 
 const styles = StyleSheet.create({
+  view: {
+    
+  },
   img: {
     position: "absolute",
     width: 375,
@@ -82,7 +142,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     color: "white",
     left: 19,
-    top: 27,
+    top: 45,
   },
   male: {
     position: "absolute",

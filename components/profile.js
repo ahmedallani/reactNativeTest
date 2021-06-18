@@ -17,7 +17,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import tailwind from "tailwind-rn";
 import avataaars from "../assets/avataaars.png";
 import { Input, Block } from "galio-framework";
-const Profile = () => {
+const Profile = ({changeView}) => {
   const [imageHeight, setimageHeight] = useState(
     new Animated.Value(styles.image.height)
   );

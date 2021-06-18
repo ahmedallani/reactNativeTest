@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState}from "react";
 import {
   StyleSheet,
   View,
@@ -10,8 +10,13 @@ import {
 import { useFonts } from "expo-font";
 import { Input, Button } from "galio-framework";
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import axios from 'react-native-axios'
+
 
 const SignIn = ({changeView}) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const [loaded] = useFonts({
     Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
   });
@@ -23,7 +28,9 @@ const SignIn = ({changeView}) => {
   return (
     <View>
       <Image style={styles.img} source={require("../assets/Vector-Sign.png")} />
-      <IconAntDesign name="left" size={25} style={styles.icon} />
+      <IconAntDesign name="left" size={25} style={styles.icon} onPress={() => {
+    changeView('');
+  }} />
       <Text style={styles.title1}>Welcome</Text>
       <Text style={styles.title2}>Back</Text>
       <Input style={styles.input1} placeholder="Enter your Username" />
@@ -34,7 +41,9 @@ const SignIn = ({changeView}) => {
         viewPass
       />
       <Text style={styles.forgetpass}>Forget Password ?</Text>
-      <Button style={styles.btn1} round uppercase color="#C2C272" onPress={() =>changeView('signup')}>
+      <Button style={styles.btn1} round uppercase color="#C2C272"  onPress={() => {
+          changeView('profile');
+        }}>
         Sign-In
       </Button>
       <Button
@@ -42,6 +51,9 @@ const SignIn = ({changeView}) => {
         round
         uppercase
         color="#C2C272"
+        onPress={() => {
+          changeView('signup');
+        }}
       >
         Sign-Up
       </Button>
@@ -61,7 +73,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     color: "white",
     left: 19,
-    top: 27,
+    top: 45,
   },
   title1: {
     position: "absolute",
