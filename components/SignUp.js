@@ -14,9 +14,6 @@ import IconAntDesign from "react-native-vector-icons/AntDesign";
 import axios from 'react-native-axios'
 
 const SignUp = ({changeView}) => {
-<<<<<<< HEAD
-  const [toggleSwitch, setToggleSwitch] = useState(false);
-=======
   // const [toggleSwitch, setToggleSwitch] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -28,7 +25,6 @@ const SignUp = ({changeView}) => {
 
 
   const [password, setPassword] = useState("");
->>>>>>> 5afe7afb6be1c31c1e7ba36ce91664f697da4343
   const [loaded] = useFonts({
     Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
   });
