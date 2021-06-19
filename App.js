@@ -12,6 +12,8 @@ import Splash from "./components/Splash.js";
 import Demo from "./components/Demo.js";
 import SignIn from "./components/SignIn.js";
 import SignUp from "./components/SignUp.js";
+import Header from "./components/Categories.js";
+import Beach from "./components/BeachList";
 
 
 const App = () => {
