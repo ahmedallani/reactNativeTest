@@ -50,7 +50,8 @@ const SignIn = ({changeView,setUser,url}) => {
           );
         }else {
           setUser(data)
-          changeView('profile')
+        
+          changeView('categories')
         }
             
     }).catch((err)=>{

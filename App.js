@@ -12,6 +12,8 @@ import Splash from "./components/Splash.js";
 import Demo from "./components/Demo.js";
 import SignIn from "./components/SignIn.js";
 import SignUp from "./components/SignUp.js";
+import Header from "./components/Categories.js";
+import Beach from "./components/BeachList";
 
 
 const App = () => {
@@ -35,6 +37,12 @@ const App = () => {
     }
     if (view === "signin") {
       return <SignIn changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
+    }
+    if (view === "beach") {
+      return <Beach changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
+    }
+    if (view === "categories") {
+      return <Header changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
     }
   };
   return (
