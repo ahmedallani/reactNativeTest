@@ -13,23 +13,28 @@ import Demo from "./components/Demo.js";
 import SignIn from "./components/SignIn.js";
 import SignUp from "./components/SignUp.js";
 
+
 const App = () => {
   const [view, setview] = useState("");
+  const [user, setUser] = useState(null);
+  var url ='192.168.2.192'
+
+
   const changeView = (view) => {
     setview(view);
   };
   const renderView = () => {
     if (view === "") {
-      return <Splash changeView={(view) => changeView(view)} />;
+      return <Splash changeView={(view) => changeView(view)} url={url}/>;
     }
     if (view === "profile") {
-      return <Demo changeView={(view) => changeView(view)} />;
+      return <Demo changeView={(view) => changeView(view)} user={user}  url={url}/>;
     }
     if (view === "signup") {
-      return <SignUp changeView={(view) => changeView(view)} />;
+      return <SignUp changeView={(view) => changeView(view)} url={url} />;
     }
     if (view === "signin") {
-      return <SignIn changeView={(view) => changeView(view)} />;
+      return <SignIn changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
     }
   };
   return (

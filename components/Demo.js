@@ -8,13 +8,16 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   ScrollView,
-  StyleSheet, Dimensions,StatusBar 
+  StyleSheet,
+  Dimensions,
+  StatusBar,
 } from "react-native";
 import styles, { IMAGE_HEIGHT, IMAGE_HEIGHT_SMALL } from "./styles";
 import avataaars from "../assets/avataaars.png";
-import { Input, Block, Button } from "galio-framework";
-import axios from 'react-native-axios'
+import IconAntDesign from "react-native-vector-icons/AntDesign";
 
+import { Input, Block, Button } from "galio-framework";
+import axios from "react-native-axios";
 
 class Demo extends Component {
   constructor(props) {
@@ -22,18 +25,17 @@ class Demo extends Component {
 
     this.imageHeight = new Animated.Value(IMAGE_HEIGHT);
     this.state = {
-      Username: "",
-      Email: "",
+      Username: this.props.user.username,
+      Email: this.props.user.email,
       Current_Password: "",
+      gender: this.props.user.gender,
       New_Password: "",
       Date_of_Birth: "",
       Phone_Number: "",
     };
-   
-
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.keyboardWillShowSub = Keyboard.addListener(
       "keyboardWillShow",
       this.keyboardWillShow
@@ -44,7 +46,7 @@ class Demo extends Component {
     );
   }
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     this.keyboardWillShowSub.remove();
     this.keyboardWillHideSub.remove();
   }
@@ -53,6 +55,7 @@ class Demo extends Component {
     Animated.timing(this.imageHeight, {
       duration: event.duration,
       toValue: IMAGE_HEIGHT_SMALL,
+      useNativeDriver: false,
     }).start();
   };
 
@@ -60,9 +63,23 @@ class Demo extends Component {
     Animated.timing(this.imageHeight, {
       duration: event.duration,
       toValue: IMAGE_HEIGHT,
+      useNativeDriver: false,
     }).start();
   };
-
+  updateUser() {
+    // var infos = {
+    //   Username,
+    //   Email,
+    //   gender,
+    //   password,
+    //   Date_of_Birth,
+    //   Phone_Number,
+    // };
+    console.log("the url",this.props.user._id);
+    axios.patch(`http://${this.props.url}:3001/user/password/${this.props.user._id}`, {
+      password:this.state.Current_Password,newpassword:this.state.New_Password
+    });
+  }
   render() {
     return (
       <KeyboardAvoidingView
@@ -78,14 +95,14 @@ class Demo extends Component {
 
             <Input
               name="Username"
-              placeholder="Username"
+              placeholder={this.props.user.username}
               onChangeText={(e) => this.setState({ Username: e })}
               style={styles.textInput}
               rounded
             />
             <Input
               name="Email"
-              placeholder="Email"
+              placeholder={this.props.user.email}
               type="email-address"
               onChangeText={(e) => this.setState({ Email: e })}
               style={styles.textInput}
@@ -132,7 +149,7 @@ class Demo extends Component {
                 size={100}
                 color="#34494E"
                 style={{ marginLeft: 180 }}
-                onPress={() => console.log(this.state)}
+                onPress={() => this.updateUser()}
               >
                 Save
               </Button>
@@ -162,11 +179,11 @@ class Demo extends Component {
 //       // borderColor: "#000000",
 //       borderBottomWidth: 1,
 //     //   marginBottom: -300,
-//     },  
+//     },
 //     btnContainer: {
 //       backgroundColor: "white",
 //       marginTop: 12,
-//     },  
+//     },
 //     input: {
 //       height: 50,
 //       backgroundColor: '#fff',
@@ -200,11 +217,11 @@ class Demo extends Component {
 //       marginHorizontal: 20,
 //     },
 //     register:{
-//       marginBottom:20, 
+//       marginBottom:20,
 //       width:window.width -100,
 //       alignItems:'center',
 //       justifyContent:'center',
 //       height:50,
 //       backgroundColor: '#ffae',}
-//   }); 
+//   });
 export default Demo;

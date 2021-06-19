@@ -6,6 +6,8 @@ import {
   Text,
   SafeAreaView,
   TextInput,
+  Alert,
+
 } from "react-native";
 import { useFonts } from "expo-font";
 import { Input, Button } from "galio-framework";
@@ -13,8 +15,8 @@ import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import axios from 'react-native-axios'
 
 
-const SignIn = ({changeView}) => {
-  const [username, setUsername] = useState("");
+const SignIn = ({changeView,setUser,url}) => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loaded] = useFonts({
@@ -25,6 +27,48 @@ const SignIn = ({changeView}) => {
     return null;
   }
 
+  const getUser = (email) => {
+    axios.post(`http://${url}:3001/user/login`,{email, password}).then(({data})=>{
+        
+        
+        if (data==='incorrect password'){
+          Alert.alert(
+            "Alert ",
+            "incorrect password",
+            [
+              { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+          );
+        }
+        if(data===`email don't exist`){
+          Alert.alert(
+            "Alert ",
+            "email don't exist",
+            [
+              { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+          );
+        }
+        if(data===`email don't exist`&&data==='incorrect password'){
+          Alert.alert(
+            "Alert",
+            "email don't exist and incorrect password",
+            [
+              { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+          );
+        }
+        else {
+          setUser(data)
+          changeView('profile')
+        }
+            
+    }).catch((err)=>{
+        console.log('err', err)
+        setError(err.message)
+    })
+   };
+
   return (
     <View>
       <Image style={styles.img} source={require("../assets/Vector-Sign.png")} />
@@ -33,16 +77,21 @@ const SignIn = ({changeView}) => {
   }} />
       <Text style={styles.title1}>Welcome</Text>
       <Text style={styles.title2}>Back</Text>
-      <Input style={styles.input1} placeholder="Enter your Username" />
+      <Input style={styles.input1} 
+      placeholder="Enter your email"
+      onChangeText={setEmail}
+      />
       <Input
         style={styles.input}
         placeholder="Enter your Password"
+        onChangeText={setPassword}
         password
         viewPass
       />
       <Text style={styles.forgetpass}>Forget Password ?</Text>
-      <Button style={styles.btn1} round uppercase color="#C2C272"  onPress={() => {
-          changeView('profile');
+      <Button style={styles.btn1} round uppercase color="#C2C272" onPress={() => {
+        
+          getUser(email)
         }}>
         Sign-In
       </Button>
