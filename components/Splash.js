@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, StyleSheet,Text } from 'react-native';
-import { Input, Button } from "galio-framework";
+import {  Button } from "galio-framework";
 import { useFonts } from 'expo-font';
 
 const styles = StyleSheet.create({
@@ -103,6 +103,7 @@ if (!loaded) {
         style={styles.walk}
         source={ require('../assets/walk.png')}
       />
+  
       <Text style={styles.txt}>Your Way </Text>
       <Text style={styles.subtxt}>Find New </Text>
       <Text style={styles.subtxt1}>Possibilities</Text>

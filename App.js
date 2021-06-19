@@ -12,6 +12,8 @@ import Splash from "./components/Splash.js";
 import Demo from "./components/Demo.js";
 import SignIn from "./components/SignIn.js";
 import SignUp from "./components/SignUp.js";
+import Header from "./components/Categories.js";
+import Beach from "./components/BeachList";
 
 const App = () => {
   const [view, setview] = useState("");
@@ -20,7 +22,10 @@ const App = () => {
   };
   const renderView = () => {
     if (view === "") {
-      return <Splash changeView={(view) => changeView(view)} />;
+      //change the main view to render cotegories components
+       return <Splash changeView={(view) => changeView(view)} />;
+       // return <Header changeView={(view) => changeView(view)} />
+        // return <Beach changeView={(view) => changeView(view)} />
     }
     if (view === "profile") {
       return <Demo changeView={(view) => changeView(view)} />;
