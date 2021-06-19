@@ -40,7 +40,7 @@ const SignIn = ({changeView,setUser,url}) => {
             ]
           );
         }
-        if(data===`email don't exist`){
+        else if(data===`email don't exist`){
           Alert.alert(
             "Alert ",
             "email don't exist",
@@ -48,17 +48,7 @@ const SignIn = ({changeView,setUser,url}) => {
               { text: "OK", onPress: () => console.log("OK Pressed") }
             ]
           );
-        }
-        if(data===`email don't exist`&&data==='incorrect password'){
-          Alert.alert(
-            "Alert",
-            "email don't exist and incorrect password",
-            [
-              { text: "OK", onPress: () => console.log("OK Pressed") }
-            ]
-          );
-        }
-        else {
+        }else {
           setUser(data)
           changeView('profile')
         }
