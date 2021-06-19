@@ -1,33 +1,87 @@
-import React from 'react';
-import { StyleSheet, Text, ScrollView } from 'react-native';
+import React from "react";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { useFonts } from "expo-font";
 
-const  Beach=() =>{
+const Header = ({changeView}) => {
+  const [loaded] = useFonts({
+    Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
+  });
+
+  if (!loaded) {
+    return null;
+  }
   return (
-  
-  
-      <ScrollView style={styles.scrollView}>
-        <Text style={styles.text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </Text>
-      </ScrollView>
+    <View style={styles.container}>
+        <Text style={styles.text1} onPress={() =>changeView("profile")}>Profile</Text>
+      
+      <ImageBackground
+        source={require("../assets/sea.jpg")}
+        style={styles.image1}
+      >
+        <Text style={styles.text} onPress={() =>alert("Welcome")}>Bizerte</Text>
+      </ImageBackground>
     
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: 'white',
-    marginHorizontal:30,
-   
+  container: {
+    flex: 1,
+    flexDirection: "column",
     
   },
+  image1: {
+    borderRadius:20,
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    width: 390,
+    height: 140,
+    top: 50,
+  },
+  image2: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    width: 375,
+    height: 140,
+    top: 200,
+  },
+  image3: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    width: 375,
+    height: 140,
+    top: 350,
+  },
+  image4: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    width: 375,
+    height: 140,
+    top: 500,
+  },
   text: {
-    fontSize: 42,
+    height: 41,
+    top: 65,
+    fontFamily: "Ubuntu",
+    color: "white",
+    fontSize: 40,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  text1: {
+    height: 41,
+    top: 45,
+    fontFamily: "Ubuntu",
+    color: "black",
+    fontSize: 40,
+    fontWeight: "bold",
+    // textAlign: "center",
   },
 });
-export default Beach;
+
+export default Header;

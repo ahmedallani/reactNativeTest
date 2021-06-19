@@ -2,7 +2,7 @@ import React from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 
-const Header = () => {
+const Header = ({changeView}) => {
   const [loaded] = useFonts({
     Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
   });
@@ -17,7 +17,7 @@ const Header = () => {
         source={require("../assets/sea.jpg")}
         style={styles.image1}
       >
-        <Text style={styles.text} onPress={() =>alert("youssef")}>Beach</Text>
+        <Text style={styles.text} onPress={() =>changeView("beach")}>Beach</Text>
       </ImageBackground>
       <ImageBackground
         source={require("../assets/nature.jpg")}
