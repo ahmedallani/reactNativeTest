@@ -38,6 +38,12 @@ const App = () => {
     if (view === "signin") {
       return <SignIn changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
     }
+    if (view === "beach") {
+      return <Beach changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
+    }
+    if (view === "categories") {
+      return <Header changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
+    }
   };
   return (
     <KeyboardAvoidingView
