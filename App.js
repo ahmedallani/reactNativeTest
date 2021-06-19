@@ -15,26 +15,28 @@ import SignUp from "./components/SignUp.js";
 import Header from "./components/Categories.js";
 import Beach from "./components/BeachList";
 
+
 const App = () => {
   const [view, setview] = useState("");
+  const [user, setUser] = useState(null);
+  var url ='192.168.2.192'
+
+
   const changeView = (view) => {
     setview(view);
   };
   const renderView = () => {
     if (view === "") {
-      //change the main view to render cotegories components
-       return <Splash changeView={(view) => changeView(view)} />;
-       // return <Header changeView={(view) => changeView(view)} />
-        // return <Beach changeView={(view) => changeView(view)} />
+      return <Splash changeView={(view) => changeView(view)} url={url}/>;
     }
     if (view === "profile") {
-      return <Demo changeView={(view) => changeView(view)} />;
+      return <Demo changeView={(view) => changeView(view)} user={user}  url={url}/>;
     }
     if (view === "signup") {
-      return <SignUp changeView={(view) => changeView(view)} />;
+      return <SignUp changeView={(view) => changeView(view)} url={url} />;
     }
     if (view === "signin") {
-      return <SignIn changeView={(view) => changeView(view)} />;
+      return <SignIn changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
     }
   };
   return (

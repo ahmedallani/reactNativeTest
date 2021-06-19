@@ -13,7 +13,7 @@ import { Input, Button, Switch } from "galio-framework";
 import IconAntDesign from "react-native-vector-icons/AntDesign";
 import axios from 'react-native-axios'
 
-const SignUp = ({changeView}) => {
+const SignUp = ({changeView,url}) => {
   // const [toggleSwitch, setToggleSwitch] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -28,7 +28,7 @@ const SignUp = ({changeView}) => {
   const [loaded] = useFonts({
     Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
   });
-  var url ='192.168.2.192'
+  
  if (!loaded) {
     return null;
   }
