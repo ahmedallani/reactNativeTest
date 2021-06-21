@@ -63,5 +63,16 @@ export default  StyleSheet.create({
           alignItems:'center',
           justifyContent:'center',
           height:50,
-          backgroundColor: '#ffae',}
+          backgroundColor: '#ffae',},
+          text1: {
+            height: 41,
+            top: 45,
+            fontFamily: "Ubuntu",
+            color: "black",
+            fontSize: 40,
+            fontWeight: "bold",
+            textAlign: "center",
+            marginTop:-90,
+            marginBottom:30
+          },
       }); 

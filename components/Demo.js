@@ -11,6 +11,7 @@ import {
   StyleSheet,
   Dimensions,
   StatusBar,
+  Text
 } from "react-native";
 import styles, { IMAGE_HEIGHT, IMAGE_HEIGHT_SMALL } from "./styles";
 import avataaars from "../assets/avataaars.png";
@@ -28,7 +29,7 @@ class Demo extends Component {
       Username: this.props.user.username,
       Email: this.props.user.email,
       Current_Password: "",
-      gender: this.props.user.gender,
+      Gender: this.props.user.gender,
       New_Password: "",
       Date_of_Birth: "",
       Phone_Number: "",
@@ -75,9 +76,19 @@ class Demo extends Component {
     //   Date_of_Birth,
     //   Phone_Number,
     // };
-    console.log("the url",this.props.user._id);
+    if(this.props.user.newpassword !== ""){
     axios.patch(`http://${this.props.url}:3001/user/password/${this.props.user._id}`, {
       password:this.state.Current_Password,newpassword:this.state.New_Password
+    });
+    }
+
+    axios.patch(`http://${this.props.url}:3001/user/${this.props.user._id}`, {
+      username:this.state.Username,
+      email:this.state.Email,
+      password:this.state.Current_Password,
+      gender: this.state.Gender,
+      date_of_birth: this.state.Date_of_Birth,
+      phone_number: this.state.Phone_Number,
     });
   }
   render() {
@@ -88,6 +99,7 @@ class Demo extends Component {
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.inner}>
+            <Text style={styles.text1} onPress={() =>this.props.changeView("categories")}>Home</Text>
             <Animated.Image
               source={avataaars}
               style={[styles.logo, { height: this.imageHeight }]}
