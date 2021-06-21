@@ -11,6 +11,7 @@ import {
   StyleSheet,
   Dimensions,
   StatusBar,
+  Text
 } from "react-native";
 import styles, { IMAGE_HEIGHT, IMAGE_HEIGHT_SMALL } from "./styles";
 import avataaars from "../assets/avataaars.png";
@@ -98,6 +99,7 @@ class Demo extends Component {
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.inner}>
+            <Text style={styles.text1} onPress={() =>this.props.changeView("categories")}>Home</Text>
             <Animated.Image
               source={avataaars}
               style={[styles.logo, { height: this.imageHeight }]}

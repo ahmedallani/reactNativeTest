@@ -81,7 +81,7 @@ const SignIn = ({changeView,setUser,url}) => {
       />
       <Text style={styles.forgetpass}>Forget Password ?</Text>
       <Button style={styles.btn1} round uppercase color="#C2C272" onPress={() => {
-        
+      
           getUser(email)
         }}>
         Sign-In
