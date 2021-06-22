@@ -5,7 +5,6 @@ import {
   View,
   Button,
   KeyboardAvoidingView,
-  TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
 import Splash from "./components/Splash.js";
@@ -20,7 +19,7 @@ import CarouselCards from "./components/CarouselCards.js"
 import "react-native-gesture-handler";
 
 const App = () => {
-  const [view, setview] = useState("");
+  const [view, setview] = useState("Splash");
   const [user, setUser] = useState(null);
   var url ='192.168.2.234'
 
@@ -29,11 +28,13 @@ const App = () => {
     setview(view);
   };
   const renderView = () => {
-    if (view === "") {
+    if (view === "map") {
       return <Map  />;
     }
     if (view === "Splash") {
-      return <Splash  />;
+      return <Splash changeView={(view) => changeView(view)}
+      user={user}
+      url={url} />;
     }
     if (view === "profile") {
       return (
