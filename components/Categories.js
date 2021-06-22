@@ -1,8 +1,11 @@
 import React from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
-
-const Header = ({changeView}) => {
+import {
+  TapGestureHandler,
+  RotationGestureHandler,
+} from "react-native-gesture-handler";
+const Header = ({ changeView }) => {
   const [loaded] = useFonts({
     Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
   });
@@ -11,35 +14,44 @@ const Header = ({changeView}) => {
     return null;
   }
   return (
-    <View style={styles.container}>
-      
-      <ImageBackground
-        source={require("../assets/sea.jpg")}
-        style={styles.image1}
-      >
-        <Text style={styles.text} onPress={() =>changeView("beach")}>Beach</Text>
-      </ImageBackground>
-      <ImageBackground
-        source={require("../assets/nature.jpg")}
-        style={styles.image2}
-        
-      >
-        <Text style={styles.text} onPress={() =>alert("youssef")}>Nature</Text>
-      </ImageBackground>
-      <ImageBackground
-        source={require("../assets/desert.jpg")}
-        style={styles.image3}
-      
-      >
-        <Text style={styles.text}  onPress={() =>alert("youssef")} >Desert</Text>
-      </ImageBackground>
-      <ImageBackground
-        source={require("../assets/culture.jpg")}
-        style={styles.image4}
-      >
-        <Text style={styles.text} onPress={() =>alert("youssef")}>Culture</Text>
-      </ImageBackground>
-    </View>
+    <TapGestureHandler>
+      <RotationGestureHandler>
+        <View style={styles.container}>
+          <ImageBackground
+            source={require("../assets/sea.jpg")}
+            style={styles.image1}
+          >
+            <Text style={styles.text} onPress={() => changeView("beach")}>
+              Beach
+            </Text>
+          </ImageBackground>
+          <ImageBackground
+            source={require("../assets/nature.jpg")}
+            style={styles.image2}
+          >
+            <Text style={styles.text} onPress={() => alert("youssef")}>
+              Nature
+            </Text>
+          </ImageBackground>
+          <ImageBackground
+            source={require("../assets/desert.jpg")}
+            style={styles.image3}
+          >
+            <Text style={styles.text} onPress={() => alert("youssef")}>
+              Desert
+            </Text>
+          </ImageBackground>
+          <ImageBackground
+            source={require("../assets/culture.jpg")}
+            style={styles.image4}
+          >
+            <Text style={styles.text} onPress={() => alert("youssef")}>
+              Culture
+            </Text>
+          </ImageBackground>
+        </View>
+      </RotationGestureHandler>
+    </TapGestureHandler>
   );
 };
 
@@ -47,11 +59,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    marginTop:50,
-    
+    marginTop: 50,
   },
   image1: {
-    borderRadius:20,
+    borderRadius: 20,
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
