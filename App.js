@@ -13,13 +13,14 @@ import Demo from "./components/Demo.js";
 import SignIn from "./components/SignIn.js";
 import SignUp from "./components/SignUp.js";
 import Header from "./components/Categories.js";
-import Beach from "./components/BeachList";
+// import Beach from "./components/BeachList";
+import Carousel from "./components/Carousel"
 
 
 const App = () => {
   const [view, setview] = useState("");
   const [user, setUser] = useState(null);
-  var url ='192.168.2.192'
+  var url ='192.168.2.234'
 
 
   const changeView = (view) => {
@@ -39,7 +40,7 @@ const App = () => {
       return <SignIn changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
     }
     if (view === "beach") {
-      return <Beach changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
+      return <Carousel changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
     }
     if (view === "categories") {
       return <Header changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
@@ -50,9 +51,9 @@ const App = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      
         <View>{renderView()}</View>
-      </TouchableWithoutFeedback>
+     
     </KeyboardAvoidingView>
   );
 };
