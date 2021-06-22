@@ -16,12 +16,14 @@ import Header from "./components/Categories.js";
 import Beach from "./components/BeachList";
 import FooterBar from "./navigation/FooterBar.js";
 import Map from "./components/Map";
+import CarouselCards from "./components/CarouselCards.js"
 import "react-native-gesture-handler";
 
 const App = () => {
   const [view, setview] = useState("");
   const [user, setUser] = useState(null);
-  var url = "192.168.2.192";
+  var url ='192.168.2.234'
+
 
   const changeView = (view) => {
     setview(view);
@@ -58,16 +60,7 @@ const App = () => {
       );
     }
     if (view === "beach") {
-      return (
-        <View>
-         
-          <Beach
-            changeView={(view) => changeView(view)}
-            setUser={setUser}
-            url={url}
-          />
-        </View>
-      );
+      return <CarouselCards changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
     }
     if (view === "categories") {
       return (
