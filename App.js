@@ -14,7 +14,7 @@ import SignIn from "./components/SignIn.js";
 import SignUp from "./components/SignUp.js";
 import Header from "./components/Categories.js";
 // import Beach from "./components/BeachList";
-import Carousel from "./components/Carousel"
+import CarouselCards from "./components/CarouselCards.js"
 
 
 const App = () => {
@@ -40,7 +40,7 @@ const App = () => {
       return <SignIn changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
     }
     if (view === "beach") {
-      return <Carousel changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
+      return <CarouselCards changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
     }
     if (view === "categories") {
       return <Header changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;

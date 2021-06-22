@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity, View, ScrollView } from "react-native"
+import { StyleSheet,View} from "react-native"
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from './CarouselCardItem'
 import data from './data'
@@ -9,10 +9,17 @@ const CarouselCards = () => {
   const [index, setIndex] = React.useState(0)
   const isCarousel = React.useRef(null)
 
-
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 50
+    },
+  });
   return (
-    <React.Fragment>
-      <Carousel
+    <View style={styles.container}>
+      <Carousel 
         layout="tinder"
         layoutCardOffset={9}
         ref={isCarousel}
@@ -38,7 +45,7 @@ const CarouselCards = () => {
         inactiveDotScale={0.6}
         tappableDots={true}
       />
-    </React.Fragment>
+    </View>
 
 
   )
