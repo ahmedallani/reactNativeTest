@@ -6,7 +6,10 @@ import {
   Text,
   SafeAreaView,
   TextInput,
+  Keyboard,
   Alert,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
 
 } from "react-native";
 import { useFonts } from "expo-font";
@@ -51,7 +54,7 @@ const SignIn = ({changeView,setUser,url}) => {
         }else {
           setUser(data)
         
-          changeView('categories')
+          changeView('map')
         }
             
     }).catch((err)=>{
@@ -61,6 +64,11 @@ const SignIn = ({changeView,setUser,url}) => {
    };
 
   return (
+    <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : "height"}
+    style={styles.container}
+  >
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <View>
       <Image style={styles.img} source={require("../assets/Vector-Sign.png")} />
       <IconAntDesign name="left" size={25} style={styles.icon} onPress={() => {
@@ -98,6 +106,7 @@ const SignIn = ({changeView,setUser,url}) => {
         Sign-Up
       </Button>
     </View>
+    </TouchableWithoutFeedback></KeyboardAvoidingView>
   );
 };
 
