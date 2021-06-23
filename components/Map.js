@@ -1,10 +1,12 @@
 import * as React from 'react';
 import MapView from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import SideBar from "../Drawer";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 
 export default function Map() {
   return (
     <View style={styles.container}>
+      {/* <SideBar /> */}
       <MapView style={styles.map} />
     </View>
   );
