@@ -15,23 +15,23 @@ import SignUp from "./components/SignUp.js";
 import Header from "./components/Categories.js";
 import Beach from "./components/BeachList";
 import FooterBar from "./navigation/FooterBar.js";
-import Map from "./components/Map";
+import {Map} from "./components/Map";
 import "react-native-gesture-handler";
 
 const App = () => {
   const [view, setview] = useState("");
   const [user, setUser] = useState(null);
-  var url = "192.168.2.192";
+  const url = "192.168.2.192";
 
   const changeView = (view) => {
     setview(view);
   };
   const renderView = () => {
     if (view === "") {
-      return <Map  />;
+      return <Map url={url} />;
     }
     if (view === "Splash") {
-      return <Splash  />;
+      return <Splash/>;
     }
     if (view === "profile") {
       return (
