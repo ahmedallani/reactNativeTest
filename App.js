@@ -5,7 +5,6 @@ import {
   View,
   Button,
   KeyboardAvoidingView,
-  TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
 import Splash from "./components/Splash.js";
@@ -15,11 +14,16 @@ import SignUp from "./components/SignUp.js";
 import Header from "./components/Categories.js";
 import Beach from "./components/BeachList";
 import FooterBar from "./navigation/FooterBar.js";
+<<<<<<< HEAD
 import {Map} from "./components/Map";
+=======
+import Map from "./components/Map";
+import CarouselCards from "./components/CarouselCards.js"
+>>>>>>> e04cca552062ad476939b03585daecfd86a5d7eb
 import "react-native-gesture-handler";
 
 const App = () => {
-  const [view, setview] = useState("");
+  const [view, setview] = useState("Splash");
   const [user, setUser] = useState(null);
   const url = "192.168.2.192";
 
@@ -58,16 +62,7 @@ const App = () => {
       );
     }
     if (view === "beach") {
-      return (
-        <View>
-         
-          <Beach
-            changeView={(view) => changeView(view)}
-            setUser={setUser}
-            url={url}
-          />
-        </View>
-      );
+      return <CarouselCards changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
     }
     if (view === "categories") {
       return (
