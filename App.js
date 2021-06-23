@@ -22,7 +22,7 @@ import Categories from "./components/Categories.js";
 const App = () => {
   const [view, setview] = useState("Splash");
   const [user, setUser] = useState(null);
-  var url ='192.168.2.234'
+  var url = "192.168.2.131";
 
 
   const changeView = (view) => {
