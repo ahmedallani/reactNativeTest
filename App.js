@@ -11,12 +11,13 @@ import Splash from "./components/Splash.js";
 import Profile from "./components/Profile.js";
 import SignIn from "./components/SignIn.js";
 import SignUp from "./components/SignUp.js";
-import Header from "./components/Categories.js";
+import Category from "./components/Categories.js";
 import Beach from "./components/BeachList";
 import FooterBar from "./navigation/FooterBar.js";
 import Map from "./components/Map";
 import CarouselCards from "./components/CarouselCards.js"
 import "react-native-gesture-handler";
+import Categories from "./components/Categories.js";
 
 const App = () => {
   const [view, setview] = useState("Splash");
@@ -32,7 +33,7 @@ const App = () => {
       return <Map  />;
     }
     if (view === "Splash") {
-      return <Splash changeView={(view) => changeView(view)}
+      return <Category changeView={(view) => changeView(view)}
       user={user}
       url={url} />;
     }
@@ -60,14 +61,14 @@ const App = () => {
         />
       );
     }
-    if (view === "beach") {
-      return <CarouselCards changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
-    }
+    // if (view === "beach" ) {
+    //   return <CarouselCards changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
+    // }
     if (view === "categories") {
       return (
         <View>
          
-          <Header
+          <Category
             changeView={(view) => changeView(view)}
             setUser={setUser}
             url={url}

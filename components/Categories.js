@@ -1,55 +1,48 @@
-import React from "react";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { ImageBackground, StyleSheet, Text, ScrollView } from "react-native";
 import { useFonts } from "expo-font";
 import {
   TapGestureHandler,
   RotationGestureHandler,
 } from "react-native-gesture-handler";
-const Header = ({ changeView }) => {
+import axios from "react-native-axios";
+const Category = ({ changeView, url }) => {
   const [loaded] = useFonts({
     Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
   });
-
+  const [categories, setCategories] = useState(null);
+  useEffect(() => {
+    getBeach();
+  }, []);
+  const getBeach = async () => {
+    axios
+      .get(`http://${url}:3001/categories`)
+      .then(({ data }) => {
+        console.log(data);
+        setCategories(data)
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  };
   if (!loaded) {
     return null;
   }
+
   return (
     <TapGestureHandler>
       <RotationGestureHandler>
-        <View style={styles.container}>
-          <ImageBackground
-            source={require("../assets/sea.jpg")}
-            style={styles.image1}
-          >
-            <Text style={styles.text} onPress={() => changeView("beach")}>
-              Beach
-            </Text>
-          </ImageBackground>
-          <ImageBackground
-            source={require("../assets/nature.jpg")}
-            style={styles.image2}
-          >
-            <Text style={styles.text} onPress={() => alert("youssef")}>
-              Nature
-            </Text>
-          </ImageBackground>
-          <ImageBackground
-            source={require("../assets/desert.jpg")}
-            style={styles.image3}
-          >
-            <Text style={styles.text} onPress={() => alert("youssef")}>
-              Desert
-            </Text>
-          </ImageBackground>
-          <ImageBackground
-            source={require("../assets/culture.jpg")}
-            style={styles.image4}
-          >
-            <Text style={styles.text} onPress={() => alert("youssef")}>
-              Culture
-            </Text>
-          </ImageBackground>
-        </View>
+        <ScrollView style={styles.container}>
+          {categories &&
+            categories.map((category) => (
+              <ImageBackground
+                source={require("../assets/sea.jpg")}
+                style={styles.image1}
+              >
+                <Text style={styles.text}>{category.name}</Text>
+              </ImageBackground>
+            ))}
+        </ScrollView>
       </RotationGestureHandler>
     </TapGestureHandler>
   );
@@ -59,44 +52,48 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    marginTop: 50,
   },
   image1: {
-    borderRadius: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    opacity: 1.0,
+    shadowOpacity: 100,
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
     width: 390,
-    height: 140,
-    top: 50,
+    height: 250,
+    top: 0,
   },
   image2: {
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
     width: 375,
-    height: 140,
-    top: 200,
+    height: 250,
+    top: 5,
   },
   image3: {
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
     width: 375,
-    height: 140,
-    top: 350,
+    height: 250,
+    top: 10,
   },
   image4: {
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
     width: 375,
-    height: 140,
-    top: 500,
+    height: 250,
+    top: 15,
   },
   text: {
     height: 41,
-    top: 65,
+    top: -10,
     fontFamily: "Ubuntu",
     color: "white",
     fontSize: 40,
@@ -105,4 +102,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default Category;
