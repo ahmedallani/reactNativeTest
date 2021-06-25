@@ -9,92 +9,65 @@ import {
 } from "react-native";
 import Splash from "./components/Splash.js";
 import Profile from "./components/Profile.js";
-import SignIn from "./components/SignIn.js";
-import SignUp from "./components/SignUp.js";
-import Category from "./components/Categories.js";
+import Signin from "./components/Signin.js";
+import Signup from "./components/Signup.js";
+import Header from "./components/Categories.js";
 import Beach from "./components/BeachList";
 import FooterBar from "./navigation/FooterBar.js";
-import Map from "./components/Map";
-import CarouselCards from "./components/CarouselCards.js"
+import { Map } from "./components/Map";
 import "react-native-gesture-handler";
-import Categories from "./components/Categories.js";
-import Path from "./components/ReadyPaths.js"
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+const Stack = createStackNavigator();
 
-const App = () => {
-  const [view, setview] = useState("path");
-  const [user, setUser] = useState(null);
-  var url = "192.168.2.234";
-
-
-  const changeView = (view) => {
-    setview(view);
-  };
-  const renderView = () => {
-    if (view === "map") {
-      return <Map  />;
-    }
-    if (view === "path") {
-      return <Path  />;
-    }
-    if (view === "Splash") {
-      return <Category changeView={(view) => changeView(view)}
-      user={user}
-      url={url} />;
-    }
-    if (view === "profile") {
-      return (
-        <View>
-         
-          <Profile
-            changeView={(view) => changeView(view)}
-            user={user}
-            url={url}
-          />
-        </View>
-      );
-    }
-    if (view === "signup") {
-      return <SignUp changeView={(view) => changeView(view)} url={url} />;
-    }
-    if (view === "signin") {
-      return (
-        <SignIn
-          changeView={(view) => changeView(view)}
-          setUser={setUser}
-          url={url}
-        />
-      );
-    }
-    // if (view === "beach" ) {
-    //   return <CarouselCards changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
-    // }
-    if (view === "categories") {
-      return (
-        <View>
-         
-          <Category
-            changeView={(view) => changeView(view)}
-            setUser={setUser}
-            url={url}
-          />
-        </View>
-      );
-    }
-  };
-  return (
-    <React.Fragment>
-      {renderView()}
-      
-    </React.Fragment>
+function MyStack({ user, setUser, url }) {
+  const MapRoute = ({ navigation }) => (
+    <Map setUser={setUser} url={url} navigation={navigation}/>
   );
-};
-const styles = StyleSheet.create({
-  container: {
-    // justifyContent: "space-around"
-    // backgroundColor: '#4c69a5',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-});
+  const ProfileRoute = ({ navigation }) => (
+    <Profile user={user} url={url} navigation={navigation} />
+  );
+  const CategoryRoute = ({ navigation }) => (
+    <Header url={url} setUser={setUser} navigation={navigation} />
+  );
+  const SigninRoute = ({ navigation }) => (
+    <Signin url={url} setUser={setUser} navigation={navigation} />
+  );
+  const SignupRoute = ({ navigation }) => (
+    <Signup url={url} setUser={setUser} navigation={navigation} />
+  );
+  const BeachRoute = ({ navigation }) => (
+    <Beach url={url} setUser={setUser} navigation={navigation} />
+  );
+
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Home" component={Splash} />
+      <Stack.Screen name="Signin" component={SigninRoute} />
+      <Stack.Screen name="Signup" component={SignupRoute} />
+      <Stack.Screen name="Map" component={MapRoute} />
+      <Stack.Screen name="Beach" component={BeachRoute} />
+      <Stack.Screen name="Profile" component={ProfileRoute} />
+      <Stack.Screen name="Header" component={CategoryRoute} />
+    </Stack.Navigator>
+  );
+}
+
+function App() {
+  const hello = "hello";
+
+  const [user, setUser] = useState(null);
+  const url = "192.168.2.192";
+  return (
+    <NavigationContainer>
+      <MyStack user={user} setUser={setUser} url={url} />
+    </NavigationContainer>
+  );
+}
+
 
 export default App;

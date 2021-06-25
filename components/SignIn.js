@@ -18,7 +18,9 @@ import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import axios from 'react-native-axios'
 
 
-const SignIn = ({changeView,setUser,url}) => {
+const Signin = ({navigation,setUser}) => {
+  
+  const url = "192.168.2.192";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -54,7 +56,7 @@ const SignIn = ({changeView,setUser,url}) => {
         }else {
           setUser(data)
         
-          changeView('map')
+          navigation.navigate('Map')
         }
             
     }).catch((err)=>{
@@ -72,7 +74,7 @@ const SignIn = ({changeView,setUser,url}) => {
     <View>
       <Image style={styles.img} source={require("../assets/Vector-Sign.png")} />
       <IconAntDesign name="left" size={25} style={styles.icon} onPress={() => {
-    changeView('');
+     navigation.goBack()
   }} />
       <Text style={styles.title1}>Welcome</Text>
       <Text style={styles.title2}>Back</Text>
@@ -100,7 +102,7 @@ const SignIn = ({changeView,setUser,url}) => {
         uppercase
         color="#C2C272"
         onPress={() => {
-          changeView('signup');
+          navigation.navigate('Signup');
         }}
       >
         Sign-Up
@@ -183,6 +185,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily: "Ubuntu",
     position: "absolute",
+    backgroundColor: "#AAAA3A",
     width: 326,
     height: 46,
     left: 24,
@@ -191,6 +194,7 @@ const styles = StyleSheet.create({
   btn2: {
     fontWeight: "bold",
     fontFamily: "Ubuntu",
+    backgroundColor: "#AAAA3A",
     position: "absolute",
     width: 326,
     height: 46,
@@ -199,4 +203,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignIn;
+export default Signin;

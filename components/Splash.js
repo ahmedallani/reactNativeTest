@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 
 });
 
-const Splash = ({changeView}) => {
+const Splash = ({navigation}) => {
 
     
 const [loaded] = useFonts({
@@ -108,12 +108,12 @@ if (!loaded) {
       <Text style={styles.subtxt}>Find New </Text>
       <Text style={styles.subtxt1}>Possibilities</Text>
       <Button style={styles.btn1} round uppercase color="#AAAA3A"  onPress={() => {
-    changeView('signin');
+    navigation.navigate('Signin');
   }}>
         Sign-In
       </Button>
       <Button style={styles.btn2} round uppercase color="#AAAA3A"    onPress={() => {
-          changeView('signup');
+          navigation.navigate('Signup');
         }}>
         Sign-Up
       </Button>

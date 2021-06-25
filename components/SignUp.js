@@ -13,7 +13,8 @@ import { Input, Button, Switch } from "galio-framework";
 import IconAntDesign from "react-native-vector-icons/AntDesign";
 import axios from 'react-native-axios'
 
-const SignUp = ({changeView,url}) => {
+const Signup = ({navigation,url}) => {
+  
   // const [toggleSwitch, setToggleSwitch] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -49,7 +50,7 @@ if(isEnabled === true){
   const addUser = () => {
     axios.post(`http://${url}:3001/user/signup`,{username,email,password,gender}).then(({data})=>{
         console.log(data)
-        changeView('signin')
+        navigation.navigate('Signin');
   
     }).catch((err)=>{
         console.log('err', err)
@@ -68,7 +69,7 @@ if(isEnabled === true){
             source={require("../assets/Vector-Sign.png")}
           />
           <IconAntDesign name="left" size={25} style={styles.icon} onPress={() => {
-          changeView('');
+          navigation.goBack()
         }}/>
           <Text style={styles.title1}>Create</Text>
           <Text style={styles.title2}>Account</Text>
@@ -112,7 +113,7 @@ if(isEnabled === true){
             uppercase
             color="#AAAA3A"
             onPress={() => {
-              changeView('signin');
+              navigation.navigate('Signin');
             }}
           >
             Sign-In
@@ -237,4 +238,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUp;
+export default Signup;

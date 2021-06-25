@@ -10,7 +10,8 @@ import PathsScreen from "../screens/PathsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import SignOutScreen from "../screens/SignOutScreen";
 import { Container, Content, Header, Body, Icon } from "native-base";
-
+import Splash from "./components/Splash"
+import{ Map} from "./components/Map";
 const Drawer = createDrawerNavigator();
 
 const SideBar = () => {
@@ -18,6 +19,7 @@ const SideBar = () => {
     <NavigationContainer>
       <Drawer.Navigator
         drawerStyle={{ backgroundColor: "#F5F3EB" }}
+
         initialRouteName="Home"
         hideStatusBar={true}
         screenOptions={{
