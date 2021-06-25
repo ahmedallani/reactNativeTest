@@ -185,6 +185,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily: "Ubuntu",
     position: "absolute",
+    backgroundColor: "#AAAA3A",
     width: 326,
     height: 46,
     left: 24,
@@ -193,6 +194,7 @@ const styles = StyleSheet.create({
   btn2: {
     fontWeight: "bold",
     fontFamily: "Ubuntu",
+    backgroundColor: "#AAAA3A",
     position: "absolute",
     width: 326,
     height: 46,

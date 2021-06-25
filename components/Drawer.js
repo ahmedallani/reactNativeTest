@@ -3,12 +3,12 @@ import React from "react";
 import { StyleSheet, Image, Text, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
-import HomeScreen from "./screens/HomeScreen";
-import CategoriesScreen from "./screens/CategoriesScreen";
-import WishListScreen from "./screens/WishListScreen";
-import PathsScreen from "./screens/PathsScreen";
-import ProfileScreen from "./screens/ProfileScreen";
-import SignOutScreen from "./screens/SignOutScreen";
+import HomeScreen from "../screens/HomeScreen";
+import CategoriesScreen from "../screens/CategoriesScreen";
+import WishListScreen from "../screens/WishListScreen";
+import PathsScreen from "../screens/PathsScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import SignOutScreen from "../screens/SignOutScreen";
 import { Container, Content, Header, Body, Icon } from "native-base";
 import Splash from "./components/Splash"
 import{ Map} from "./components/Map";

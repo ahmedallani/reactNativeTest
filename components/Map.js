@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import axios from "react-native-axios";
-export const Map = ({navigation}) => {
-    console.log(navigation);
+export const Map = ({navigation }) => {
+    console.log(navigator);
   const [marker, setMarker] = useState(null);
   const [lat, setlat] = useState(null);
   const [long, setlong] = useState(null);
@@ -28,7 +28,7 @@ navigator.geolocation.getCurrentPosition(position => {
     getPlaces()
 })
   }
-  const getPlacesUrl=(lat,long,radius,type=``)=>{
+  const getPlacesUrl=(lat,long,radius=50,type=``)=>{
       const baseUrl=`https://maps.googleapis.com/maps/api/place/nearbysearch/json?`
       const location =`location=${lat},${long}&radius=${radius}`
       const typeData = `&types=${type}`
