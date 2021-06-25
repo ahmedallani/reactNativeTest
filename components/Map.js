@@ -9,7 +9,7 @@ export const Map = ({navigation }) => {
   const [place, setplace] = useState([]);
 
 
-  const url = "192.168.2.192";
+  const url = "192.168.2.234";
   useEffect(() => {
     axios
       .get(`http://${url}:3001/places`)

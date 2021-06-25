@@ -33,7 +33,7 @@ class Profile extends Component {
       New_Password: "",
       Date_of_Birth: "",
       Phone_Number: "",
-      url: "192.168.2.192",
+      url: "192.168.2.234",
     };
   }
   UNSAFE_componentWillMount() {

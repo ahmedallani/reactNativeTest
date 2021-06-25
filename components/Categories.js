@@ -6,7 +6,9 @@ import {
   RotationGestureHandler,
 } from "react-native-gesture-handler";
 import axios from "react-native-axios";
-const Category = ({ changeView, url }) => {
+import CarouselCards from "./CarouselCards.js";
+
+const Category = ({ setCategory, navigation, url }) => {
   const [loaded] = useFonts({
     Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
   });
@@ -18,8 +20,8 @@ const Category = ({ changeView, url }) => {
     axios
       .get(`http://${url}:3001/categories`)
       .then(({ data }) => {
-        console.log(data);
-        setCategories(data)
+        // console.log(data);
+        setCategories(data);
       })
       .catch((err) => {
         console.log("err", err);
@@ -34,12 +36,25 @@ const Category = ({ changeView, url }) => {
       <RotationGestureHandler>
         <ScrollView style={styles.container}>
           {categories &&
-            categories.map((category,key) => (
-              <ImageBackground key={key}
-                source={require("../assets/sea.jpg")}
-                style={styles.image1}
+            categories.map((category, key) => (
+              <ImageBackground
+                key={key}
+                source={{ uri: category.picture }}
+                style={styles.image}
               >
-                <Text style={styles.text}>{category.name}</Text>
+                <Text
+                  style={styles.text}
+                  onPress={() => {
+                    {
+                      navigation.navigate("CarouselCards");
+                      setCategory(category)
+                      
+                      
+                    }
+                  }}
+                >
+                  {category.name}
+                </Text>
               </ImageBackground>
             ))}
         </ScrollView>
@@ -53,7 +68,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
-  image1: {
+  image: {
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderBottomLeftRadius: 20,
@@ -67,7 +82,7 @@ const styles = StyleSheet.create({
     height: 250,
     top: 0,
   },
-  
+
   text: {
     height: 41,
     top: -10,
