@@ -11,24 +11,31 @@ import Splash from "./components/Splash.js";
 import Profile from "./components/Profile.js";
 import Signin from "./components/Signin.js";
 import Signup from "./components/Signup.js";
-import Header from "./components/Categories.js";
-import Beach from "./components/BeachList";
+// import Beach from "./components/BeachList";
 import FooterBar from "./navigation/FooterBar.js";
 import { Map } from "./components/Map";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import Category from "./components/Categories.js";
+import Path from "./components/ReadyPaths.js";
+import CarouselCards from "./components/CarouselCards.js";
 const Stack = createStackNavigator();
 
 function MyStack({ user, setUser, url }) {
+  const [category, setCategory] = useState({});
+
+  const CategoryRoute = ({ navigation }) => (
+    <Category url={url} setCategory={setCategory} navigation={navigation} />
+  );
+  const CarouselRoute = ({ navigation }) => (
+    <CarouselCards  url={url}  category = {category} navigation={navigation} />
+  );
   const MapRoute = ({ navigation }) => (
     <Map setUser={setUser} url={url} navigation={navigation}/>
   );
   const ProfileRoute = ({ navigation }) => (
     <Profile user={user} url={url} navigation={navigation} />
-  );
-  const CategoryRoute = ({ navigation }) => (
-    <Header url={url} setUser={setUser} navigation={navigation} />
   );
   const SigninRoute = ({ navigation }) => (
     <Signin url={url} setUser={setUser} navigation={navigation} />
@@ -36,9 +43,9 @@ function MyStack({ user, setUser, url }) {
   const SignupRoute = ({ navigation }) => (
     <Signup url={url} setUser={setUser} navigation={navigation} />
   );
-  const BeachRoute = ({ navigation }) => (
-    <Beach url={url} setUser={setUser} navigation={navigation} />
-  );
+  // const BeachRoute = ({ navigation }) => (
+  //   <Beach url={url} setUser={setUser} navigation={navigation} />
+  // );
 
   return (
     <Stack.Navigator
@@ -50,9 +57,11 @@ function MyStack({ user, setUser, url }) {
       <Stack.Screen name="Signin" component={SigninRoute} />
       <Stack.Screen name="Signup" component={SignupRoute} />
       <Stack.Screen name="Map" component={MapRoute} />
-      <Stack.Screen name="Beach" component={BeachRoute} />
+      {/* <Stack.Screen name="Beach" component={BeachRoute} /> */}
       <Stack.Screen name="Profile" component={ProfileRoute} />
-      <Stack.Screen name="Header" component={CategoryRoute} />
+      <Stack.Screen name="Category" component={CategoryRoute} />
+      <Stack.Screen name="CarouselCards" component={CarouselRoute} />
+
     </Stack.Navigator>
   );
 }
@@ -61,7 +70,7 @@ function App() {
   const hello = "hello";
 
   const [user, setUser] = useState(null);
-  const url = "192.168.2.192";
+  const url = "192.168.2.234";
   return (
     <NavigationContainer>
       <MyStack user={user} setUser={setUser} url={url} />

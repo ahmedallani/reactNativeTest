@@ -20,7 +20,7 @@ import axios from 'react-native-axios'
 
 const Signin = ({navigation,setUser}) => {
   
-  const url = "192.168.2.192";
+  const url = "192.168.2.234";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -56,7 +56,7 @@ const Signin = ({navigation,setUser}) => {
         }else {
           setUser(data)
         
-          navigation.navigate('Map')
+          navigation.navigate('Category')
         }
             
     }).catch((err)=>{
