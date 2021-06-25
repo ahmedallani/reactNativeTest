@@ -11,8 +11,7 @@ import Splash from "./components/Splash.js";
 import Profile from "./components/Profile.js";
 import Signin from "./components/Signin.js";
 import Signup from "./components/Signup.js";
-import Header from "./components/Categories.js";
-import Beach from "./components/BeachList";
+// import Beach from "./components/BeachList";
 import FooterBar from "./navigation/FooterBar.js";
 import { Map } from "./components/Map";
 import "react-native-gesture-handler";
@@ -61,6 +60,12 @@ function MyStack({ place, lat, long, user, setUser, url }) {
   const SignupRoute = ({ navigation }) => (
     <Signup url={url} setUser={setUser} navigation={navigation} />
   );
+<<<<<<< HEAD
+=======
+  // const BeachRoute = ({ navigation }) => (
+  //   <Beach url={url} setUser={setUser} navigation={navigation} />
+  // );
+>>>>>>> c16109ba2c4c07c02892a3f447853958d36e6909
 
   return (
     <Stack.Navigator
