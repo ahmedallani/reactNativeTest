@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MapView from 'react-native-maps';
-import SideBar from "../Drawer";
+import SideBar from "./Drawer";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 
 export default function Map() {

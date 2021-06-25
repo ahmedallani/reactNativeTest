@@ -18,11 +18,12 @@ import Map from "./components/Map";
 import CarouselCards from "./components/CarouselCards.js"
 import "react-native-gesture-handler";
 import Categories from "./components/Categories.js";
+import Path from "./components/ReadyPaths.js"
 
 const App = () => {
-  const [view, setview] = useState("Splash");
+  const [view, setview] = useState("path");
   const [user, setUser] = useState(null);
-  var url = "192.168.2.131";
+  var url = "192.168.2.234";
 
 
   const changeView = (view) => {
@@ -31,6 +32,9 @@ const App = () => {
   const renderView = () => {
     if (view === "map") {
       return <Map  />;
+    }
+    if (view === "path") {
+      return <Path  />;
     }
     if (view === "Splash") {
       return <Category changeView={(view) => changeView(view)}

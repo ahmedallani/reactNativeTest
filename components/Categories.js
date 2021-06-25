@@ -34,8 +34,8 @@ const Category = ({ changeView, url }) => {
       <RotationGestureHandler>
         <ScrollView style={styles.container}>
           {categories &&
-            categories.map((category) => (
-              <ImageBackground
+            categories.map((category,key) => (
+              <ImageBackground key={key}
                 source={require("../assets/sea.jpg")}
                 style={styles.image1}
               >
@@ -67,30 +67,7 @@ const styles = StyleSheet.create({
     height: 250,
     top: 0,
   },
-  image2: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
-    width: 375,
-    height: 250,
-    top: 5,
-  },
-  image3: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
-    width: 375,
-    height: 250,
-    top: 10,
-  },
-  image4: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
-    width: 375,
-    height: 250,
-    top: 15,
-  },
+  
   text: {
     height: 41,
     top: -10,
