@@ -88,7 +88,7 @@ export const Map = ({place, lat, long, user, setUser, url } ) => {
       showsBuildings={true}
       showsTraffic={true}
       showsIndoors={true}
-      onPress={(e) =>console.log(e)}
+    
     >
            <MapViewDirections
           origin={ {latitude: lat,
@@ -100,10 +100,10 @@ export const Map = ({place, lat, long, user, setUser, url } ) => {
        
           apikey={"AIzaSyDDiLn6ojJRYCCRV7ZruUhFvcMvYlpXva0"} // insert your API Key here
           strokeWidth={4}
-          strokeColor="#111111"
+          strokeColor="#0560FA"
         />
       {place.map((mark, index) => (
-          
+         
         <Marker
           key={index}
           coordinate={{
@@ -111,9 +111,7 @@ export const Map = ({place, lat, long, user, setUser, url } ) => {
             longitude : 10.286667
           }}
           title={mark.name}
-          image = {
-            mark.icon
-           }
+        //   image={mark.icon}
            onPress={() =>console.log('hello there')}
           
         />

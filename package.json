@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free-regular": "^5.0.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.11",
     "@react-navigation/compat": "^5.3.15",

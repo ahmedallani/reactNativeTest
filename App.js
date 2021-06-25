@@ -8,12 +8,12 @@ import {
   Keyboard,
 } from "react-native";
 import Splash from "./components/Splash.js";
-import Profile from "./components/Profile.js";
+// import Profile from "./components/Profile.js";
 import Signin from "./components/Signin.js";
 import Signup from "./components/Signup.js";
 // import Beach from "./components/BeachList";
-import FooterBar from "./navigation/FooterBar.js";
-import { Map } from "./components/Map";
+// import FooterBar from "./navigation/FooterBar.js";
+// import { Map } from "./components/Map";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -60,12 +60,6 @@ function MyStack({ place, lat, long, user, setUser, url }) {
   const SignupRoute = ({ navigation }) => (
     <Signup url={url} setUser={setUser} navigation={navigation} />
   );
-<<<<<<< HEAD
-=======
-  // const BeachRoute = ({ navigation }) => (
-  //   <Beach url={url} setUser={setUser} navigation={navigation} />
-  // );
->>>>>>> c16109ba2c4c07c02892a3f447853958d36e6909
 
   return (
     <Stack.Navigator
@@ -86,7 +80,7 @@ function MyStack({ place, lat, long, user, setUser, url }) {
 }
 
 function App() {
-  const hello = "hello";
+  
   const [marker, setMarker] = useState(null);
 
   const [user, setUser] = useState(null);
@@ -137,9 +131,10 @@ function App() {
   };
   const getPlaces = () => {
     const markers = [];
-    const url = getPlacesUrl(lat, long, 1000);
-    axios.get(`${url}`).then((res) => {
-      res.results.map((e, i) => {
+    const urls = getPlacesUrl(lat, long);
+    axios.get(`${urls}`).then((res) => {
+      
+      res.data.results.map((e, i) => {
         const marketObj = {};
         marketObj.id = e.id;
         marketObj.name = e.name;
@@ -165,6 +160,7 @@ function App() {
         lat={lat}
         long={long}
       />
+      {/* <SideBar/> */}
     </NavigationContainer>
   );
 }

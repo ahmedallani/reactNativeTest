@@ -43,7 +43,7 @@ const SideBar = ({ place, lat, long, user, setUser, url }) => {
       <Drawer.Navigator
         drawerStyle={{ backgroundColor: "#F5F3EB" }}
 
-        initialRouteName="Home"
+        initialRouteName="WishList"
         hideStatusBar={true}
         screenOptions={{
           headerShown: true,
@@ -56,14 +56,14 @@ const SideBar = ({ place, lat, long, user, setUser, url }) => {
         }}
       >
         <Drawer.Screen
-          name="Home"
+          name="Map"
           component={MapRoute}
           options={{
-            title: "Home",
+            title: "Map",
             drawerIcon: ({ focused }) => {
               return (
                 <FontAwesome5
-                  name="home"
+                  name="Map"
                   size={focused ? 18 : 20}
                   color={focused ? "#C2C272" : "#34494E"}
                 />
