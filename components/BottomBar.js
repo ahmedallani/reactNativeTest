@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, Image, Text, View } from "react-native";
-import Tabs from "./navigation/Tabs";
+import Tabs from "../navigation/Tabs";
 
 
 const BottomBar = () => {
