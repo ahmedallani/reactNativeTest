@@ -56,7 +56,7 @@ const Signin = ({navigation,setUser}) => {
         }else {
           setUser(data)
         
-          navigation.navigate('Map')
+          navigation.navigate('Sidebar')
         }
             
     }).catch((err)=>{
