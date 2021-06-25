@@ -75,4 +75,10 @@ export default  StyleSheet.create({
             marginTop:-90,
             marginBottom:30
           },
+          icon: {
+            position: "absolute",
+            color: "white",
+            left: 19,
+            top: 45,
+          },
       }); 

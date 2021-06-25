@@ -4,8 +4,8 @@ import { Icon, Button, Container, Header, Content, Left } from "native-base";
 
 const PathsScreen = () => {
   return (
-    <Container>
-      <Content
+   
+      <View
         contentContainerStyle={{
           flex: 1,
           alignItems: "center",
@@ -13,8 +13,8 @@ const PathsScreen = () => {
         }}
       >
         <Text>Paths Screen</Text>
-      </Content>
-    </Container>
+      </View>
+    
   );
 };
 

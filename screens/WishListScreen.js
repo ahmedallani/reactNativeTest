@@ -4,17 +4,17 @@ import { Icon, Button, Container, Header, Content, Left } from "native-base";
 
 const WhishListScreen = () => {
   return (
-    <Container>
-      <Content
-        contentContainerStyle={{
+    
+      <View
+        style={{
           flex: 1,
           alignItems: "center",
           justifyContent: "center",
         }}
       >
         <Text>WishList Screen</Text>
-      </Content>
-    </Container>
+      </View>
+    
   );
 };
 
