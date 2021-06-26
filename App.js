@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -8,88 +8,161 @@ import {
   Keyboard,
 } from "react-native";
 import Splash from "./components/Splash.js";
-import Profile from "./components/Profile.js";
-import SignIn from "./components/SignIn.js";
-import SignUp from "./components/SignUp.js";
-import Header from "./components/Categories.js";
-import Beach from "./components/BeachList";
-import FooterBar from "./navigation/FooterBar.js";
-import Map from "./components/Map";
-import CarouselCards from "./components/CarouselCards.js"
+// import Profile from "./components/Profile.js";
+import Signin from "./components/Signin.js";
+import Signup from "./components/Signup.js";
+// import Beach from "./components/BeachList";
+// import FooterBar from "./navigation/FooterBar.js";
+// import { Map } from "./components/Map";
 import "react-native-gesture-handler";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import axios from "react-native-axios";
+import Constants from "expo-constants";
+import * as Location from "expo-location";
+import SideBar from "./components/Drawer";
+const Stack = createStackNavigator();
 
-const App = () => {
-  const [view, setview] = useState("Splash");
-  const [user, setUser] = useState(null);
-  var url = "192.168.2.131";
-
-
-  const changeView = (view) => {
-    setview(view);
-  };
-  const renderView = () => {
-    if (view === "map") {
-      return <Map  />;
-    }
-    if (view === "Splash") {
-      return <Splash changeView={(view) => changeView(view)}
+function MyStack({ place, lat, long, user, setUser, url }) {
+  // const MapRoute = ({ navigation }) => (
+  //   <Map
+  //     setUser={setUser}
+  //     url={url}
+  //     navigation={navigation}
+  //     place={place}
+  //     lat={lat}
+  //     long={long}
+  //   />
+  //   );
+    // const ProfileRoute = ({ navigation }) => (
+    //   <Profile user={user} url={url} navigation={navigation} />
+    // );
+    // const CategoryRoute = ({ navigation }) => (
+    //   <Header url={url} setUser={setUser} navigation={navigation} />
+    // );
+    // const BeachRoute = ({ navigation }) => (
+    //   <Beach url={url} setUser={setUser} navigation={navigation} />
+    // );
+  const SideBarRoute = () => (
+    <SideBar
       user={user}
-      url={url} />;
-    }
-    if (view === "profile") {
-      return (
-        <View>
-         
-          <Profile
-            changeView={(view) => changeView(view)}
-            user={user}
-            url={url}
-          />
-        </View>
+      url={url}
+      setUser={setUser}
+      url={url}
+      place={place}
+      lat={lat}
+      long={long}
+    />
+  );
+  const SigninRoute = ({ navigation }) => (
+    <Signin url={url} setUser={setUser} navigation={navigation} />
+  );
+  const SignupRoute = ({ navigation }) => (
+    <Signup url={url} setUser={setUser} navigation={navigation} />
+  );
+
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Home" component={Splash} />
+      <Stack.Screen name="Signin" component={SigninRoute} />
+      <Stack.Screen name="Signup" component={SignupRoute} />
+      {/* <Stack.Screen name="Map" component={MapRoute} /> */}
+      {/* <Stack.Screen name="Beach" component={BeachRoute} />
+      <Stack.Screen name="Profile" component={ProfileRoute} />
+      <Stack.Screen name="Header" component={CategoryRoute} /> */}
+      <Stack.Screen name="Sidebar" component={SideBarRoute} />
+    </Stack.Navigator>
+  );
+}
+
+function App() {
+  
+  const [marker, setMarker] = useState(null);
+
+  const [user, setUser] = useState(null);
+  const url = "192.168.2.192";
+  const [lat, setlat] = useState(null);
+  const [long, setlong] = useState(null);
+  const [place, setplace] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`http://${url}:3001/places`)
+      .then(({ data }) => {
+        setMarker(data);
+      })
+      .catch((err) => console.error(err));
+    getCurrentlocation();
+  }, []);
+  const getCurrentlocation = async () => {
+    if (Platform.OS === "android" && !Constants.isDevice) {
+      console.log(
+        "Oops, this will not work on Snack in an Android emulator. Try it on your device!"
       );
+      return;
     }
-    if (view === "signup") {
-      return <SignUp changeView={(view) => changeView(view)} url={url} />;
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      console.log("Permission to access location was denied");
+      return;
     }
-    if (view === "signin") {
-      return (
-        <SignIn
-          changeView={(view) => changeView(view)}
-          setUser={setUser}
-          url={url}
-        />
-      );
-    }
-    if (view === "beach") {
-      return <CarouselCards changeView={(view) => changeView(view)} setUser={setUser} url={url}/>;
-    }
-    if (view === "categories") {
-      return (
-        <View>
-         
-          <Header
-            changeView={(view) => changeView(view)}
-            setUser={setUser}
-            url={url}
-          />
-        </View>
-      );
-    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    // console.log('local',location.coords);
+    //  navigator.geolocation.getCurrentPosition(position => {
+
+    const lat = location.coords.latitude;
+    const long = location.coords.longitude;
+    setlat(lat);
+    setlong(long);
+    getPlaces();
+    // })
+  };
+  const getPlacesUrl = (lat, long, radius = 500, type = ``) => {
+    const baseUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?`;
+    const location = `location=${lat},${long}&radius=${radius}`;
+    const typeData = `&types=${type}`;
+    const api = `&key=AIzaSyDDiLn6ojJRYCCRV7ZruUhFvcMvYlpXva0`;
+    return `${baseUrl}${location}${typeData}${api}`;
+  };
+  const getPlaces = () => {
+    const markers = [];
+    const urls = getPlacesUrl(lat, long);
+    axios.get(`${urls}`).then((res) => {
+      
+      res.data.results.map((e, i) => {
+        const marketObj = {};
+        marketObj.id = e.id;
+        marketObj.name = e.name;
+        marketObj.photos = e.photos;
+        marketObj.rating = e.rating;
+        marketObj.vicinity = e.vicinity;
+        marketObj.marker = {
+          latitude: e.geometry.location.lat,
+          longitude: e.geometry.location.lng,
+        };
+        markers.push(marketObj);
+      });
+      setplace(markers);
+    });
   };
   return (
-    <React.Fragment>
-      {renderView()}
-      
-    </React.Fragment>
+    <NavigationContainer>
+      <MyStack
+        user={user}
+        setUser={setUser}
+        url={url}
+        place={place}
+        lat={lat}
+        long={long}
+      />
+      {/* <SideBar/> */}
+    </NavigationContainer>
   );
-};
-const styles = StyleSheet.create({
-  container: {
-    // justifyContent: "space-around"
-    // backgroundColor: '#4c69a5',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-});
+}
 
 export default App;

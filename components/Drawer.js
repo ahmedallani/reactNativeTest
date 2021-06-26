@@ -3,22 +3,47 @@ import React from "react";
 import { StyleSheet, Image, Text, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
-import HomeScreen from "./screens/HomeScreen";
-import CategoriesScreen from "./screens/CategoriesScreen";
-import WishListScreen from "./screens/WishListScreen";
-import PathsScreen from "./screens/PathsScreen";
-import ProfileScreen from "./screens/ProfileScreen";
-import SignOutScreen from "./screens/SignOutScreen";
+import HomeScreen from "../screens/HomeScreen";
+import CategoriesScreen from "../screens/CategoriesScreen";
+import WishListScreen from "../screens/WishListScreen";
+import PathsScreen from "../screens/PathsScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import SignOutScreen from "../screens/SignOutScreen";
 import { Container, Content, Header, Body, Icon } from "native-base";
+import Category from "./Categories.js";
+import Beach from "./BeachList";
+
+import { Map } from "./Map";
+import Profile from "./Profile.js";
 
 const Drawer = createDrawerNavigator();
 
-const SideBar = () => {
+const SideBar = ({ place, lat, long, user, setUser, url }) => {
+   const MapRoute = ({ navigation }) => (
+    <Map
+      setUser={setUser}
+      url={url}
+      navigation={navigation}
+      place={place}
+      lat={lat}
+      long={long}
+    />
+    );
+    const ProfileRoute = ({ navigation }) => (
+      <Profile user={user} url={url} navigation={navigation} />
+    );
+    const CategoryRoute = ({ navigation }) => (
+      <Category url={url} setUser={setUser} navigation={navigation} />
+    );
+    const BeachRoute = ({ navigation }) => (
+      <Beach url={url} setUser={setUser} navigation={navigation} />
+    );
   return (
-    <NavigationContainer>
+    
       <Drawer.Navigator
         drawerStyle={{ backgroundColor: "#F5F3EB" }}
-        initialRouteName="Home"
+
+        initialRouteName="WishList"
         hideStatusBar={true}
         screenOptions={{
           headerShown: true,
@@ -31,14 +56,14 @@ const SideBar = () => {
         }}
       >
         <Drawer.Screen
-          name="Home"
-          component={HomeScreen}
+          name="Map"
+          component={MapRoute}
           options={{
-            title: "Home",
+            title: "Map",
             drawerIcon: ({ focused }) => {
               return (
                 <FontAwesome5
-                  name="home"
+                  name="Map"
                   size={focused ? 18 : 20}
                   color={focused ? "#C2C272" : "#34494E"}
                 />
@@ -48,7 +73,7 @@ const SideBar = () => {
         />
         <Drawer.Screen
           name="Categories"
-          component={CategoriesScreen}
+          component={CategoryRoute}
           options={{
             title: "Categories",
             drawerIcon: ({ focused }) => {
@@ -96,7 +121,7 @@ const SideBar = () => {
         />
         <Drawer.Screen
           name="Profile"
-          component={ProfileScreen}
+          component={ProfileRoute}
           options={{
             title: "Profile",
             drawerIcon: ({ focused }) => {
@@ -127,7 +152,7 @@ const SideBar = () => {
           }}
         />
       </Drawer.Navigator>
-    </NavigationContainer>
+   
   );
 };
 
