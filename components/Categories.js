@@ -5,28 +5,51 @@ import {
   TapGestureHandler,
   RotationGestureHandler,
 } from "react-native-gesture-handler";
-import axios from "react-native-axios";
 import CarouselCards from "./CarouselCards.js";
+import axios from "react-native-axios";
 
-const Category = ({ setCategory, navigation, url }) => {
+const Category = ({
+  setCategory,
+  setCategories,
+  navigation,
+  url,
+  categories,
+  places,
+}) => {
   const [loaded] = useFonts({
     Ubuntu: require("../assets/fonts/Ubuntu-Bold.ttf"),
   });
-  const [categories, setCategories] = useState(null);
+
+  // // const [categories, setCategories] = useState(null);
   useEffect(() => {
-    getBeach();
-  }, []);
-  const getBeach = async () => {
+    getPlaces();
+   }, []);
+
+  // const getBeach = () => {
+  //   axios
+  //     .get(`http://${url}:3001/categories`)
+  //     .then(({ data }) => {
+  //       // console.log(data);
+  //       setCategories(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log("err", err);
+  //     });
+  // };
+  const getPlaces = () => {
     axios
-      .get(`http://${url}:3001/categories`)
+      .get(
+        `http://${url}:3001/places/onecategory?id_category=${categories._id}`
+      )
       .then(({ data }) => {
-        // console.log(data);
-        setCategories(data);
+        console.log(data);
+        setPlaces(data);
       })
       .catch((err) => {
         console.log("err", err);
       });
   };
+
   if (!loaded) {
     return null;
   }
@@ -47,9 +70,7 @@ const Category = ({ setCategory, navigation, url }) => {
                   onPress={() => {
                     {
                       navigation.navigate("CarouselCards");
-                      setCategory(category)
-                      
-                      
+                      setCategory(category);
                     }
                   }}
                 >

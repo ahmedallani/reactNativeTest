@@ -67,49 +67,66 @@ const Signin = ({navigation,setUser}) => {
 
   return (
     <KeyboardAvoidingView
-    behavior={Platform.OS === "ios" ? "padding" : "height"}
-    style={styles.container}
-  >
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    <View>
-      <Image style={styles.img} source={require("../assets/Vector-Sign.png")} />
-      <IconAntDesign name="left" size={25} style={styles.icon} onPress={() => {
-     navigation.goBack()
-  }} />
-      <Text style={styles.title1}>Welcome</Text>
-      <Text style={styles.title2}>Back</Text>
-      <Input style={styles.input1} 
-      placeholder="Enter your email"
-      onChangeText={setEmail}
-      />
-      <Input
-        style={styles.input}
-        placeholder="Enter your Password"
-        onChangeText={setPassword}
-        password
-        viewPass
-      />
-      <Text style={styles.forgetpass}>Forget Password ?</Text>
-      <Button style={styles.btn1} round uppercase color="#C2C272" onPress={() => {
-          navigation.navigate('Sidebar')
-      
-          // getUser(email)
-        }}>
-        Sign-In
-      </Button>
-      <Button
-        style={styles.btn2}
-        round
-        uppercase
-        color="#C2C272"
-        onPress={() => {
-          navigation.navigate('Signup');
-        }}
-      >
-        Sign-Up
-      </Button>
-    </View>
-    </TouchableWithoutFeedback></KeyboardAvoidingView>
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View>
+          <Image
+            style={styles.img}
+            source={require("../assets/Vector-Sign.png")}
+          />
+          <IconAntDesign
+            name="left"
+            size={25}
+            style={styles.icon}
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
+          <Text style={styles.title1}>Welcome</Text>
+          <Text style={styles.title2}>Back</Text>
+          <Input
+            style={styles.input1}
+            placeholder="Enter your email"
+            onChangeText={setEmail}
+            type="email-address"
+          />
+          <Input
+            style={styles.input}
+            placeholder="Enter your Password"
+            onChangeText={setPassword}
+            password
+            viewPass
+          />
+          <Text style={styles.forgetpass}>Forget Password ?</Text>
+          <Button
+            style={styles.btn1}
+            round
+            uppercase
+            color="#C2C272"
+            onPress={() => {
+              navigation.navigate("Sidebar");
+
+              getUser(email);
+            }}
+          >
+            Sign-In
+          </Button>
+          <Button
+            style={styles.btn2}
+            round
+            uppercase
+            color="#C2C272"
+            onPress={() => {
+              navigation.navigate("Signup");
+            }}
+          >
+            Sign-Up
+          </Button>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
