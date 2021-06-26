@@ -56,7 +56,7 @@ const Signin = ({navigation,setUser}) => {
         }else {
           setUser(data)
         
-          navigation.navigate('Category')
+          navigation.navigate('Sidebar')
         }
             
     }).catch((err)=>{
@@ -91,8 +91,9 @@ const Signin = ({navigation,setUser}) => {
       />
       <Text style={styles.forgetpass}>Forget Password ?</Text>
       <Button style={styles.btn1} round uppercase color="#C2C272" onPress={() => {
+          navigation.navigate('Sidebar')
       
-          getUser(email)
+          // getUser(email)
         }}>
         Sign-In
       </Button>
