@@ -1,40 +1,41 @@
-import React,{useState, useEffect} from 'react'
-import { StyleSheet,View, Text} from "react-native"
-import Carousel, { Pagination } from 'react-native-snap-carousel'
-import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from './CarouselCardItem'
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, Text } from "react-native";
+import Carousel, { Pagination } from "react-native-snap-carousel";
+import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from "./CarouselCardItem";
 
-import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import IconAntDesign from "react-native-vector-icons/AntDesign";
 import axios from "react-native-axios";
 
-
 const CarouselCards = (props) => {
-  const [places, setPlaces] = useState([]);
-  useEffect(() => {
-    getPlaces();
-    console.log("props",props.category._id);
-  }, []);
+const [places, setPlaces] = useState([]);
+useEffect(() => {
+  getPlaces();
+ 
+}, []);
 console.log(places);
-  const getPlaces = () => {
-    axios
-      .get(`http://${props.url}:3001/places/onecategory?id_category=${props.category._id}`)
-      .then(({ data }) => {
-         console.log(data);
-        setPlaces(data);
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-  };
-  
-  const [index, setIndex] = React.useState(0)
-  const isCarousel = React.useRef(null)
+const getPlaces = () => {
+  axios
+    .get(
+      `http://${props.url}:3001/places/onecategory?id_category=${props.categories._id}`
+    )
+    .then(({ data }) => {
+      console.log(data);
+      setPlaces(data);
+    })
+    .catch((err) => {
+      console.log("err", err);
+    });
+};
+
+  const [index, setIndex] = React.useState(0);
+  const isCarousel = React.useRef(null);
 
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: 50
+      backgroundColor: "#fff",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 50,
     },
     icon: {
       position: "absolute",
@@ -44,13 +45,17 @@ console.log(places);
     },
   });
 
- 
   return (
     <View style={styles.container}>
-      <IconAntDesign name="left" size={25} style={styles.icon} onPress={() => {
-     props.navigation.goBack()
-  }} />
-      <Carousel 
+      <IconAntDesign
+        name="left"
+        size={25}
+        style={styles.icon}
+        onPress={() => {
+          props.navigation.goBack();
+        }}
+      />
+      <Carousel
         layout="tinder"
         layoutCardOffset={9}
         ref={isCarousel}
@@ -77,11 +82,7 @@ console.log(places);
         tappableDots={true}
       /> */}
     </View>
+  );
+};
 
-
-  )
-}
-
-
-
-export default CarouselCards
+export default CarouselCards;
