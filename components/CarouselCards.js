@@ -9,7 +9,7 @@ import axios from "react-native-axios";
 const CarouselCards = (props) => {
 const [places, setPlaces] = useState([]);
 useEffect(() => {
-  getPlaces();
+  //getPlaces();
  
 }, []);
 console.log(places);
