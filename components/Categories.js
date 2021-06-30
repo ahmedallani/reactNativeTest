@@ -22,7 +22,7 @@ const Category = ({
 
   // // const [categories, setCategories] = useState(null);
   useEffect(() => {
-    getPlaces();
+    //getPlaces();
    }, []);
 
   // const getBeach = () => {

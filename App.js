@@ -121,7 +121,7 @@ function App() {
     const long = location.coords.longitude;
     setlat(lat);
     setlong(long);
-    getPlaces();
+    //getPlaces();
     // })
   };
   const getPlacesUrl = (lat, long, radius = 500, type = ``) => {

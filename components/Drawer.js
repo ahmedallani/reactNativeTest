@@ -28,7 +28,7 @@ const SideBar = ({ place, lat, long, user, setUser, url }) => {
 
   useEffect(() => {
     getCategory();
-    getPlaces();
+    //getPlaces();
   }, []);
 
   const getCategory = () => {
