@@ -7,6 +7,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
+  Platform
 } from "react-native";
 import { useFonts } from "expo-font";
 import { Input, Button, Switch } from "galio-framework";

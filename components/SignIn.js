@@ -10,7 +10,7 @@ import {
   Alert,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-
+  Platform
 } from "react-native";
 import { useFonts } from "expo-font";
 import { Input, Button } from "galio-framework";

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+//**  unused imports
 import {
   StyleSheet,
   Text,
@@ -6,6 +7,7 @@ import {
   Button,
   KeyboardAvoidingView,
   Keyboard,
+  Platform
 } from "react-native";
 import Splash from "./components/Splash.js";
 // import Profile from "./components/Profile.js";
