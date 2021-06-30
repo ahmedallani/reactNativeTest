@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import Splash from "./components/Splash.js";
 // import Profile from "./components/Profile.js";
-import Signin from "./components/Signin.js";
-import Signup from "./components/Signup.js";
+import Signin from "./components/SignIn.js";
+import Signup from "./components/SignUp.js";
 // import Beach from "./components/BeachList";
 // import FooterBar from "./navigation/FooterBar.js";
 // import { Map } from "./components/Map";
