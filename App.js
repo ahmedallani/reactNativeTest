@@ -93,7 +93,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`http://${url}:3001/places`)
+      .get(`http://${url}/places`)
       .then(({ data }) => {
         setMarker(data);
       })

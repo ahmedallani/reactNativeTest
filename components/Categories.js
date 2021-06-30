@@ -27,7 +27,7 @@ const Category = ({
 
   // const getBeach = () => {
   //   axios
-  //     .get(`http://${url}:3001/categories`)
+  //     .get(`http://${url}/categories`)
   //     .then(({ data }) => {
   //       // console.log(data);
   //       setCategories(data);
@@ -39,7 +39,7 @@ const Category = ({
   const getPlaces = () => {
     axios
       .get(
-        `http://${url}:3001/places/onecategory?id_category=${categories._id}`
+        `http://${url}/places/onecategory?id_category=${categories._id}`
       )
       .then(({ data }) => {
         console.log(data);

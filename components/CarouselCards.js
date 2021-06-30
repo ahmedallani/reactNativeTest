@@ -16,7 +16,7 @@ console.log(places);
 const getPlaces = () => {
   axios
     .get(
-      `http://${props.url}:3001/places/onecategory?id_category=${props.categories._id}`
+      `http://${props.url}/places/onecategory?id_category=${props.categories._id}`
     )
     .then(({ data }) => {
       console.log(data);

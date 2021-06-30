@@ -49,7 +49,7 @@ if(isEnabled === true){
   
 
   const addUser = () => {
-    axios.post(`http://${url}:3001/user/signup`,{username,email,password,gender}).then(({data})=>{
+    axios.post(`http://${url}/user/signup`,{username,email,password,gender}).then(({data})=>{
         console.log(data)
         navigation.navigate('Signin');
   

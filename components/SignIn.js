@@ -33,7 +33,7 @@ const Signin = ({navigation,setUser}) => {
   }
 
   const getUser = (email) => {
-    axios.post(`http://${url}:3001/user/login`,{email, password}).then(({data})=>{
+    axios.post(`http://${url}/user/login`,{email, password}).then(({data})=>{
         
         
         if (data==='incorrect password'){

@@ -33,7 +33,7 @@ const SideBar = ({ place, lat, long, user, setUser, url }) => {
 
   const getCategory = () => {
     axios
-      .get(`http://${url}:3001/categories`)
+      .get(`http://${url}/categories`)
       .then(({ data }) => {
       console.log(data);
         setCategories(data);

@@ -69,7 +69,7 @@ class Profile extends Component {
   updateUser() {
     if (this.props.user.newpassword !== "") {
       axios.patch(
-        `http://${this.props.url}:3001/user/password/${this.props.user._id}`,
+        `http://${this.props.url}/user/password/${this.props.user._id}`,
         {
           password: this.state.Current_Password,
           newpassword: this.state.New_Password,
@@ -77,7 +77,7 @@ class Profile extends Component {
       );
     }
 
-    axios.patch(`http://${this.props.url}:3001/user/${this.props.user._id}`, {
+    axios.patch(`http://${this.props.url}/user/${this.props.user._id}`, {
       username: this.state.Username,
       email: this.state.Email,
       password: this.state.Current_Password,

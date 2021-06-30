@@ -15,7 +15,7 @@ export const Map = ({place, lat, long, user, setUser, url } ) => {
 //   const url = "https://fc08081baf35.ngrok.io/";;
 //   useEffect(() => {
 //     axios
-//       .get(`http://${url}:3001/places`)
+//       .get(`http://${url}/places`)
 //       .then(({ data }) => {
 //         setMarker(data);
 //       })
