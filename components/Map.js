@@ -12,7 +12,7 @@ export const Map = ({place, lat, long, user, setUser, url } ) => {
 //   const [place, setplace] = useState([]);
 
 
-//   const url = "192.168.2.192";
+//   const url = "https://fc08081baf35.ngrok.io/";;
 //   useEffect(() => {
 //     axios
 //       .get(`http://${url}:3001/places`)

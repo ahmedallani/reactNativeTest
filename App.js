@@ -84,7 +84,7 @@ function App() {
   const [marker, setMarker] = useState(null);
 
   const [user, setUser] = useState(null);
-  const url = "192.168.2.131";
+  const url = "https://fc08081baf35.ngrok.io/";
   const [lat, setlat] = useState(null);
   const [long, setlong] = useState(null);
   const [place, setplace] = useState([]);

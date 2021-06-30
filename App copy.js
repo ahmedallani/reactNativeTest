@@ -61,7 +61,7 @@ function App() {
   const hello = "hello";
 
   const [user, setUser] = useState(null);
-  const url = "192.168.2.192";
+  const url = "https://fc08081baf35.ngrok.io/";;
   return (
     <NavigationContainer>
       <MyStack user={user} setUser={setUser} url={url} />

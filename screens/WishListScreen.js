@@ -11,7 +11,7 @@ const Wish = ({ place, lat, long, user, setUser, url }) => {
   //   const [long, setlong] = useState(null);
   //   const [place, setplace] = useState([]);
 
-  //   const url = "192.168.2.192";
+  //   const url = "https://fc08081baf35.ngrok.io/";;
   //   useEffect(() => {
   //     axios
   //       .get(`http://${url}:3001/places`)
