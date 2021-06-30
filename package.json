@@ -9,8 +9,9 @@
   },
   "dependencies": {
     "force": "0.0.3",
+    "react-is": "^16.8.0",
     "expo-font": "~9.1.0",
-    "expo-asset": "^8.3.2",
+    "expo-asset": "~8.3.1",
     "prop-types": "^15.7.2",
     "native-base": "^3.0.2",
     "tailwind-rn": "^3.0.1",
@@ -39,12 +40,12 @@
     "react-native-linear-gradient": "^2.5.6",
     "react-native-maps-directions": "^1.8.0",
     "@react-navigation/bottom-tabs": "^5.11.11",
-    "react-native-safe-area-context": "^3.2.0",
+    "react-native-safe-area-context": "3.2.0",
     "@react-native-community/masked-view": "0.1.10",
+    "react-native-vector-icons/AntDesign": "*",
     "@fortawesome/fontawesome-free-regular": "^5.0.1",
-    "react-is": "^16.8.0",
     "react-native-vector-icons/FontAwesome5": "*",
-    "react-native-vector-icons/AntDesign": "*"
+    "@expo/vector-icons": "^12.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
